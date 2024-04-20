@@ -15,7 +15,7 @@ class AppTheme {
       textTheme: TextTheme(
           titleLarge: GoogleFonts.montserratAlternates()
               .copyWith(fontSize: 40, fontWeight: FontWeight.bold),
-          titleMedium: GoogleFonts.montserratAlternates().copyWith(
+          titleMedium: GoogleFonts.gothicA1().copyWith(
               fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),
           titleSmall: GoogleFonts.montserratAlternates().copyWith(fontSize: 20),
           labelSmall: GoogleFonts.montserratAlternates()
