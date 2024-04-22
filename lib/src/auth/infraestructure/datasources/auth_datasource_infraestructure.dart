@@ -29,7 +29,18 @@ class AuthDatasourceInfraestructure extends AuthDatasource {
       final response = await dio
           .post('/auth/login', data: {'email': email, 'password': password});
       final user = UserMapper.userJsonToEntity(response.data);
+
+      // final User newUser = User(
+      //     id: "12345",
+      //     email: "harry@google.com",
+      //     fullName: "Harry",
+      //     roles: ["admin"],
+      //     token:
+      //         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJlZDVhN2QxLWI5YzAtNGI5MC05ODQ5LWQ5MmE5YzE1ZjYyNiIsImlhdCI6MTcxMzgwNjkzNSwiZXhwIjoxNzEzODE0MTM1fQ.OuJvJ2kabcdpY7y_2jFbIpyuto45fy5dr-Elm_qlbU8");
+
+      // return newUser;
       return user;
+
     } on DioException catch (e) {
       if (e.response?.statusCode == 401) {
         throw CustomError(
