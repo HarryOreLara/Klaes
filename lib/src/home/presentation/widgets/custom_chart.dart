@@ -1,15 +1,16 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:klaes_app/config/theme/app_colors.dart';
+import 'package:klaes_app/config/theme/letters_colors.dart';
 
-class LineChartSample2 extends StatefulWidget {
-  const LineChartSample2({super.key});
+class CustomChart extends StatefulWidget {
+  const CustomChart({super.key});
 
   @override
-  State<LineChartSample2> createState() => _LineChartSample2State();
+  State<CustomChart> createState() => _CustomChartState();
 }
 
-class _LineChartSample2State extends State<LineChartSample2> {
+class _CustomChartState extends State<CustomChart> {
   List<Color> gradientColors = [
     AppColors.contentColorCyan,
     AppColors.contentColorBlue,
@@ -35,39 +36,60 @@ class _LineChartSample2State extends State<LineChartSample2> {
             ),
           ),
         ),
-        SizedBox(
-          width: 60,
-          height: 34,
-          child: TextButton(
-            onPressed: () {
-              setState(() {
-                showAvg = !showAvg;
-              });
-            },
-            child: Icon(
-              Icons.refresh,
-              size: 22,
-              color: showAvg ? Colors.white.withOpacity(0.5) : Colors.white,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SizedBox(
+              width: 60,
+              height: 34,
+              child: TextButton(
+                onPressed: () {
+                  setState(() {
+                    showAvg = !showAvg;
+                  });
+                },
+                child: Icon(
+                  Icons.refresh,
+                  size: 22,
+                  color: showAvg ? Colors.white.withOpacity(0.5) : Colors.white,
+                ),
+              ),
             ),
-          ),
+            const Text(
+              "Ingresos",
+              style: TextCustomStyle.letterPrimary,
+            )
+          ],
         ),
       ],
     );
   }
 
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
-    const style = TextStyle(fontSize: 16, color: Colors.white);
+    const style = TextStyle(fontSize: 14, color: Colors.white);
 
     Widget text;
     switch (value.toInt()) {
-      case 2:
-        text = const Text('MAR', style: style);
+      case 1:
+        text = const Text('ENE', style: style);
+        break;
+      case 3:
+        text = const Text('FEB', style: style);
         break;
       case 5:
+        text = const Text('MAR', style: style);
+        break;
+      case 7:
+        text = const Text('ABR', style: style);
+        break;
+      case 9:
+        text = const Text('MAY', style: style);
+        break;
+      case 11:
         text = const Text('JUN', style: style);
         break;
-      case 8:
-        text = const Text('SEP', style: style);
+      case 13:
+        text = const Text('JUL', style: style);
         break;
       default:
         text = const Text('', style: style);
@@ -85,13 +107,13 @@ class _LineChartSample2State extends State<LineChartSample2> {
     String text;
     switch (value.toInt()) {
       case 1:
-        text = '10K';
+        text = '500';
         break;
       case 3:
-        text = '30k';
+        text = '1.0k';
         break;
       case 5:
-        text = '50k';
+        text = '1.5k';
         break;
       default:
         return Container();
@@ -109,13 +131,13 @@ class _LineChartSample2State extends State<LineChartSample2> {
         verticalInterval: 1,
         getDrawingHorizontalLine: (value) {
           return const FlLine(
-            color: AppColors.mainGridLineColor,
+            color: Colors.transparent, //Cuadricula horizontal
             strokeWidth: 1,
           );
         },
         getDrawingVerticalLine: (value) {
           return const FlLine(
-            color: AppColors.mainGridLineColor,
+            color: Colors.transparent, //Cuadricula vertical
             strokeWidth: 1,
           );
         },
@@ -147,7 +169,9 @@ class _LineChartSample2State extends State<LineChartSample2> {
       ),
       borderData: FlBorderData(
         show: true,
-        border: Border.all(color: const Color(0xff37434d)),
+        border: Border.all(
+            color: Colors
+                .transparent), //Bordes del cuadrado que contiene la cuadriula
       ),
       minX: 0,
       maxX: 11,
@@ -168,7 +192,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
           gradient: LinearGradient(
             colors: gradientColors,
           ),
-          barWidth: 5,
+          barWidth: 3,
           isStrokeCapRound: true,
           dotData: const FlDotData(
             show: false,
@@ -177,7 +201,8 @@ class _LineChartSample2State extends State<LineChartSample2> {
             show: true,
             gradient: LinearGradient(
               colors: gradientColors
-                  .map((color) => color.withOpacity(0.3))
+                  .map((color) =>
+                      color.withOpacity(0.0)) //Esta es la opacidad del color
                   .toList(),
             ),
           ),

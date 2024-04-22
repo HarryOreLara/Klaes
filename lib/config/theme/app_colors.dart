@@ -21,5 +21,5 @@ class AppColors {
   static const Color contentColorPurple = Color(0xFF6E1BFF);
   static const Color contentColorPink = Color(0xFFFF3AF2);
   static const Color contentColorRed = Color(0xFFE80054);
-  static const Color contentColorCyan = Color(0xFF50E4FF);
+  static const Color contentColorCyan = Color.fromARGB(255, 209, 0, 98);
 }
