@@ -4,9 +4,6 @@ import 'package:klaes_app/src/auth/infraestructure/infraestructure.dart';
 import 'package:klaes_app/src/shared/infraestructure/services/key_value_storage_service.dart';
 import 'package:klaes_app/src/shared/infraestructure/services/key_value_storage_service_impl.dart';
 
-
-
-
 final authProvider = StateNotifierProvider<AuthNotifier, AuthState>((ref) {
   final authRepository = AuthRepositoryInfraestructure();
   final keyValueStorageService = KeyValueStorageServiceImple();
@@ -15,8 +12,6 @@ final authProvider = StateNotifierProvider<AuthNotifier, AuthState>((ref) {
       authRepository: authRepository,
       keyValueStorageService: keyValueStorageService);
 });
-
-
 
 class AuthNotifier extends StateNotifier<AuthState> {
   final AuthRepository authRepository;
@@ -68,7 +63,11 @@ class AuthNotifier extends StateNotifier<AuthState> {
   }
 
   _setloggedUser(User user) async {
-    await keyValueStorageService.setKeyValue('token', user.token);
+    const token =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJlZDVhN2QxLWI5YzAtNGI5MC05ODQ5LWQ5MmE5YzE1ZjYyNiIsImlhdCI6MTcxMzgwNjkzNSwiZXhwIjoxNzEzODE0MTM1fQ.OuJvJ2kabcdpY7y_2jFbIpyuto45fy5dr-Elm_qlbU8";
+    // await keyValueStorageService.setKeyValue('token', user.token);
+    await keyValueStorageService.setKeyValue('token', token);
+
     state = state.copyWith(
         user: user, authStatus: AuthStatus.authenticated, errorMessage: '');
   }
@@ -81,11 +80,6 @@ class AuthNotifier extends StateNotifier<AuthState> {
         errorMessage: errorMessage);
   }
 }
-
-
-
-
-
 
 enum AuthStatus { checking, authenticated, notAuthenticated }
 
