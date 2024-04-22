@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:klaes_app/config/router/app_router_notifier.dart';
 import 'package:klaes_app/src/auth/presentation/presentacion.dart';
 import 'package:klaes_app/src/home/presentation/presentacion.dart';
+import 'package:klaes_app/src/qr/presentation/presentation.dart';
+import 'package:klaes_app/src/settings/presentation/presentation.dart';
 
 final goRouterProvider = Provider((ref) {
   final goRouterNotifier = ref.read(goRouterNotifierProvider);
@@ -22,6 +24,14 @@ final goRouterProvider = Provider((ref) {
       GoRoute(
         path: '/register',
         builder: (context, state) => const RegisterScreen(),
+      ),
+      GoRoute(
+        path: '/settings',
+        builder: (context, state) => const SettingScreen(),
+      ),
+      GoRoute(
+        path: '/qr',
+        builder: (context, state) => const QrScreen(),
       ),
       GoRoute(
         path: '/',

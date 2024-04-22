@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:klaes_app/config/theme/theme.dart';
 import 'package:klaes_app/src/home/presentation/presentacion.dart';
 
@@ -24,6 +25,7 @@ class HomeScreen extends StatelessWidget {
               Icon(
                 Icons.monetization_on_sharp,
               ),
+              Icon(Icons.qr_code),
               Icon(Icons.person)
             ]),
         body: SingleChildScrollView(
@@ -34,16 +36,26 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(
                   height: size.height * 0.05,
                 ),
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Icon(
-                      Icons.menu,
-                      color: IconsCustomColors.iconColorPrimary,
+                    InkWell(
+                      onTap: () {
+                        context.push('/settings');
+                      },
+                      child: const Icon(
+                        Icons.menu,
+                        color: IconsCustomColors.iconColorPrimary,
+                      ),
                     ),
-                    Icon(
-                      Icons.qr_code_2,
-                      color: IconsCustomColors.iconColorPrimary,
+                    InkWell(
+                      onTap: () {
+                        context.push('/qr');
+                      },
+                      child: const Icon(
+                        Icons.qr_code_2,
+                        color: IconsCustomColors.iconColorPrimary,
+                      ),
                     )
                   ],
                 ),
